@@ -1253,3 +1253,83 @@ NameError: name 'joblib' is not defined
 [2025-03-27 18:32:59,362: INFO: _internal:  * Restarting with stat]
 [2025-03-27 18:33:01,423: WARNING: _internal:  * Debugger is active!]
 [2025-03-27 18:33:01,430: INFO: _internal:  * Debugger PIN: 913-479-564]
+[2025-03-27 19:49:46,160: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2025-03-27 19:49:46,160: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-03-27 19:49:46,171: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-03-27 19:49:46,176: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-03-27 19:49:46,178: INFO: common: created directory at: artifacts]
+[2025-03-27 19:49:46,178: INFO: common: created directory at: artifacts/data_ingestion]
+[2025-03-27 19:49:46,181: INFO: data_ingestion: File already exists of size: ~ 571 KB]
+[2025-03-27 19:49:46,182: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2025-03-27 19:49:46,182: INFO: main: >>>>>> stage Data Validation stage started <<<<<<]
+[2025-03-27 19:49:46,191: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-03-27 19:49:46,194: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-03-27 19:49:46,198: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-03-27 19:49:46,198: INFO: common: created directory at: artifacts]
+[2025-03-27 19:49:46,198: INFO: common: created directory at: artifacts/data_validation]
+[2025-03-27 19:49:46,198: INFO: common: created directory at: artifacts/data_validation/data]
+[2025-03-27 19:49:46,225: INFO: data_validation: Dropped Employee ID column.]
+[2025-03-27 19:49:46,232: INFO: data_validation: Categorical columns encoded successfully.]
+[2025-03-27 19:49:46,232: INFO: data_validation: LabelEncoder saved at: artifacts/data_validation\has_dependents_encoder.pkl]
+[2025-03-27 19:49:46,249: INFO: data_validation: Features ['age', 'salary', 'tenure_years'] scaled successfully.]
+[2025-03-27 19:49:46,252: INFO: data_validation: StandardScaler saved at: artifacts/data_validation\scaler.pkl]
+[2025-03-27 19:49:46,325: INFO: data_validation: Preprocessed data successfully saved at: artifacts/data_validation/data\preprocessed_data.csv]
+[2025-03-27 19:49:46,325: INFO: main: >>>>>> stage Data Validation stage completed <<<<<<
+
+x==========x]
+[2025-03-27 19:49:46,325: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2025-03-27 19:49:46,341: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-03-27 19:49:46,342: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-03-27 19:49:46,342: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-03-27 19:49:46,349: INFO: common: created directory at: artifacts]
+[2025-03-27 19:49:46,349: INFO: common: created directory at: artifacts/data_transformation]
+[2025-03-27 19:49:46,463: INFO: data_transformation: Splited data into training and testing sets]
+[2025-03-27 19:49:46,463: INFO: data_transformation: (7500, 9)]
+[2025-03-27 19:49:46,463: INFO: data_transformation: (2500, 9)]
+[2025-03-27 19:49:46,463: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2025-03-27 19:49:46,463: INFO: main: >>>>>> stage Model Training stage started <<<<<<]
+[2025-03-27 19:49:46,482: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-03-27 19:49:46,482: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-03-27 19:49:46,487: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-03-27 19:49:46,489: INFO: common: created directory at: artifacts]
+[2025-03-27 19:49:46,490: INFO: common: created directory at: artifacts/model_trainer]
+[2025-03-27 19:49:47,636: INFO: model_training: Model saved at: artifacts/model_trainer\logistic_regression_model.pkl]
+[2025-03-27 19:49:47,636: INFO: main: >>>>>> stage Model Training stage completed <<<<<<
+
+x==========x]
+[2025-03-27 19:49:47,636: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2025-03-27 19:49:47,646: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-03-27 19:49:47,646: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-03-27 19:49:47,653: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-03-27 19:49:47,653: INFO: common: created directory at: artifacts]
+[2025-03-27 19:49:47,653: INFO: common: created directory at: artifacts/model_evaluation]
+[2025-03-27 19:49:49,179: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2025-03-27 19:50:04,557: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2025-03-27 19:50:39,357: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.0.121:8080]
+[2025-03-27 19:50:39,357: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2025-03-27 19:50:39,365: INFO: _internal:  * Restarting with stat]
+[2025-03-27 19:50:42,588: WARNING: _internal:  * Debugger is active!]
+[2025-03-27 19:50:42,604: INFO: _internal:  * Debugger PIN: 913-479-564]
+[2025-03-27 19:51:02,816: INFO: _internal: 192.168.0.121 - - [27/Mar/2025 19:51:02] "GET / HTTP/1.1" 200 -]
+[2025-03-27 19:51:02,925: INFO: _internal: 192.168.0.121 - - [27/Mar/2025 19:51:02] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -]
+[2025-03-27 19:51:29,985: INFO: _internal: 192.168.0.121 - - [27/Mar/2025 19:51:29] "POST /predict HTTP/1.1" 200 -]
+[2025-03-27 20:02:54,718: INFO: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.0.121:8080]
+[2025-03-27 20:02:54,718: INFO: _internal: [33mPress CTRL+C to quit[0m]
+[2025-03-27 20:02:54,723: INFO: _internal:  * Restarting with stat]
+[2025-03-27 20:02:57,275: WARNING: _internal:  * Debugger is active!]
+[2025-03-27 20:02:57,282: INFO: _internal:  * Debugger PIN: 913-479-564]
+[2025-03-27 20:03:03,473: INFO: _internal: 192.168.0.121 - - [27/Mar/2025 20:03:03] "GET / HTTP/1.1" 200 -]
+[2025-03-27 20:04:28,796: INFO: _internal: 192.168.0.121 - - [27/Mar/2025 20:04:28] "GET / HTTP/1.1" 200 -]
+[2025-03-27 20:04:40,542: INFO: _internal: 192.168.0.121 - - [27/Mar/2025 20:04:40] "POST /predict HTTP/1.1" 200 -]

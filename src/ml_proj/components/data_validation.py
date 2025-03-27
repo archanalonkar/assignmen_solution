@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import os
 import numpy as np
+import pickle
 from src.ml_proj import logger
 from src.ml_proj.entity.config_entity import DataValidationConfig
 
@@ -11,28 +12,35 @@ class DataPreprocessing:
     def __init__(self, df: pd.DataFrame, config: DataValidationConfig):
         self.config = config
         self.df = df
-        self.encoder = None  # To store the fitted LabelEncoder
-        self.scaler = None   # To store the fitted StandardScaler
+        # self.encoder = None  # To store the fitted LabelEncoder
+        # self.scaler = None   # To store the fitted StandardScaler
 
-    def drop_employee_id(self):
-        if 'employee_id' in self.df.columns:
-            self.df.drop(columns=['employee_id'], inplace=True)
-            logger.info("Dropped Employee ID column.")
 
     def encode_categorical_columns(self):
-        
         try:
+
+            if 'employee_id' in self.df.columns:
+                self.df.drop(columns=['employee_id'], inplace=True)
+                logger.info("Dropped Employee ID column.")
+                
             categorical_cols = self.df.select_dtypes(include=['object', 'category']).columns.tolist()
             encoder = LabelEncoder()
 
             for col in categorical_cols:
                 self.df[col] = encoder.fit_transform(self.df[col])
 
+                encoder_save_path = os.path.join(self.config.root_dir, f"{col}_encoder.pkl")
+            
+           
+                with open(encoder_save_path, "wb") as f:
+                    pickle.dump(encoder, f)
+
             logger.info("Categorical columns encoded successfully.")
 
             # Save the encoder as .pkl file
-            encoder_save_path = os.path.join(self.config.root_dir, "label_encoder.pkl")
-            joblib.dump(self.encoder, encoder_save_path)
+
+
+
             logger.info(f"LabelEncoder saved at: {encoder_save_path}")
         except Exception as e:
             logger.error(f"Error encoding categorical columns: {e}")
@@ -48,7 +56,11 @@ class DataPreprocessing:
 
             # Save the scaler as .pkl file
             scaler_save_path = os.path.join(self.config.root_dir, "scaler.pkl")
-            joblib.dump(self.scaler, scaler_save_path)
+            
+            with open(scaler_save_path, "wb") as f:
+                pickle.dump(scaler, f)
+
+            # joblib.dump(self.scaler, scaler_save_path)
             logger.info(f"StandardScaler saved at: {scaler_save_path}")
         except Exception as e:
             logger.error(f"Error scaling features: {e}")
@@ -73,11 +85,10 @@ class DataPreprocessing:
 class DataValidation:
     def __init__(self, config=DataValidationConfig):
         self.config = config
-
+    
     def validate_all_columns(self) -> bool:
-        
         try:
-            validation_status = True  # Default to True
+            validation_status = None
 
             data = pd.read_csv(self.config.unzip_data_dir)
             all_cols = list(data.columns)
@@ -87,10 +98,12 @@ class DataValidation:
             for col in all_cols:
                 if col not in all_schema:
                     validation_status = False
-                    break  # Stop checking further
-
-            with open(self.config.STATUS_FILE, 'w') as f:
-                f.write(f"Validation status: {validation_status}")
+                    with open(self.config.STATUS_FILE, 'w') as f:
+                        f.write(f"Validation status: {validation_status}")
+                else:
+                    validation_status = True
+                    with open(self.config.STATUS_FILE, 'w') as f:
+                        f.write(f"Validation status: {validation_status}")
 
             return validation_status
         except Exception as e:

@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
             text-align: center;
             color: #fff;
         }
@@ -22,10 +22,14 @@
             color: #333;
         }
         h1 {
-            color: #ff3b5c;
+            color: #007bff;
+        }
+        p {
+            font-size: 20px;
+            font-weight: bold;
         }
         .btn {
-            background: #ff3b5c;
+            background: #007bff;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -37,15 +41,17 @@
             margin-top: 10px;
         }
         .btn:hover {
-            background: #d62d4e;
+            background: #0056b3;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Prediction Result</h1>
-        <p><strong>Employee is: </strong> {{ prediction }}</p>
+        <p><strong>Enrollment Prediction:</strong> {{ prediction }}</p>
         <a href="/" class="btn">Go Back</a>
     </div>
+
 </body>
 </html>

@@ -27,6 +27,7 @@
             display: block;
             font-weight: bold;
             margin-top: 10px;
+            text-align: left;
         }
         input, select {
             width: 100%;
@@ -44,6 +45,7 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            width: 100%;
         }
         .btn:hover {
             background: #0056b3;
@@ -51,9 +53,11 @@
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Employee Enrollment Prediction</h1>
         <form action="/predict" method="POST">
+            
             <label>Age:</label>
             <input type="number" name="age" step="0.1" required>
 
@@ -61,12 +65,15 @@
             <select name="gender" required>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
+                <option value="Other">Other</option>
             </select>
 
             <label>Marital Status:</label>
             <select name="marital_status" required>
-                <option value="Married">Married</option>
                 <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
             </select>
 
             <label>Salary:</label>
@@ -74,12 +81,18 @@
 
             <label>Employment Type:</label>
             <select name="employment_type" required>
-                <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Contract">Contract</option>
             </select>
 
             <label>Region:</label>
-            <input type="text" name="region" required>
+            <select name="region" required>
+                <option value="West">West</option>
+                <option value="Midwest">Midwest</option>
+                <option value="Northeast">Northeast</option>
+                <option value="South">South</option>
+            </select>
 
             <label>Has Dependents:</label>
             <select name="has_dependents" required>
@@ -93,5 +106,6 @@
             <button type="submit" class="btn">Predict</button>
         </form>
     </div>
+
 </body>
 </html>

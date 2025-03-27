@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score
 import joblib
 import os
 import pandas as pd
+import pickle
 from src.ml_proj import logger
 
 
@@ -53,5 +54,8 @@ class ModelTrainer:
 
         # Save the trained model
         model_path = os.path.join(self.config.root_dir, self.config.model_name)
-        joblib.dump(best_model, model_path)
+        #joblib.dump(best_model, model_path)
+
+        with open('artifacts/model_trainer/logistic_regression_model.pkl','wb') as f:
+            pickle.dump(best_model, f)
         logger.info(f"Model saved at: {model_path}")
