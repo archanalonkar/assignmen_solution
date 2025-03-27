@@ -1,1 +1,4 @@
-key: val
+LogisticRegression:
+  param_grid:
+    C: [0.01, 0.1, 1, 10, 100]  # Regularization strength
+    solver: ["lbfgs", "liblinear"]  # Solvers to try

@@ -1,6 +1,7 @@
 from src.ml_proj.constants import *
 from  src.ml_proj.utils.common import read_yaml, create_directories
-from ml_proj.entity.config_entity import DataIngestionConfig, DataValidationConfig
+from ml_proj.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainerConfig
+from src.ml_proj.components.model_training import LogisticRegressionConfig
 
 
 class ConfigurationManager:
@@ -35,12 +36,46 @@ class ConfigurationManager:
         config = self.config.data_validation
         schema = self.schema.COLUMNS
 
-        create_directories([config.root_dir])
+        create_directories([config.root_dir, config.validation_dir])  
 
         data_validation_config = DataValidationConfig(
             root_dir=config.root_dir,
+            validation_dir=config.validation_dir,  
             STATUS_FILE=config.STATUS_FILE,
             unzip_data_dir=config.unzip_data_dir,
             all_schema=schema,
         )
         return data_validation_config
+    
+    def get_data_transformation(self) -> DataTransformationConfig:
+        
+        config = self.config.data_transformation
+
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir = config.root_dir,
+            data_path = config.data_path
+        )
+
+        return data_transformation_config
+    
+    def get_logistic_regression_config(self):
+        config = self.config.model_trainer
+        params = self.params.LogisticRegression
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        logistic_regression_config = LogisticRegressionConfig(
+            root_dir=config.root_dir,
+            train_data_path=config.train_data_path,
+            test_data_path=config.test_data_path,
+            model_name=config.model_name,
+            param_grid=params.param_grid,
+            cv_folds=config.cv_folds,
+            scoring_metric=config.scoring_metric,
+            target_column=schema.name,
+        )
+
+        return logistic_regression_config

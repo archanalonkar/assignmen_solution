@@ -12,4 +12,5 @@ COLUMNS:
 
 TARGET_COLUMN:
 
- enrolled: int64 
+ name: enrolled
+ 
