@@ -1,7 +1,8 @@
 from src.ml_proj.constants import *
-from  src.ml_proj.utils.common import read_yaml, create_directories
-from ml_proj.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainerConfig
+from  src.ml_proj.utils.common import read_yaml, create_directories, save_json
+from ml_proj.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataTransformationConfig, ModelTrainerConfig, ModelEvaluationConfig
 from src.ml_proj.components.model_training import LogisticRegressionConfig
+import os
 
 
 class ConfigurationManager:
@@ -79,3 +80,28 @@ class ConfigurationManager:
         )
 
         return logistic_regression_config
+    
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        config1 = self.config.model_evaluation
+        params = self.params.LogisticRegression
+        schema =  self.schema.TARGET_COLUMN
+
+        config2 = self.config.mlflow_info
+
+        os.environ['MLFLOW_TRACKING_URI'] = config2.tracking_uri
+        os.environ['MLFLOW_TRACKING_USERNAME'] = config2.tracking_username
+        os.environ['MLFLOW_TRACKING_PASSWORD'] = config2.tracking_password
+        create_directories([config1.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=config1.root_dir,
+            test_data_path=config1.test_data_path,
+            model_path = config1.model_path,
+            all_params=params,
+            metric_file_name = config1.metric_file_name,
+            target_column = schema.name,
+            mlflow_uri= config2.tracking_uri,
+           
+        )
+
+        return model_evaluation_config
