@@ -19,7 +19,7 @@ class DataValidationTrainingPipeline:
         df = pd.read_csv(data_validation_config.unzip_data_dir)
         print(df.shape)
         # Data preprocessing
-        data_preprocessor = DataPreprocessing(df)
+        data_preprocessor = DataPreprocessing(df,data_validation_config)
 
         # Drop Employee ID column
         data_preprocessor.drop_employee_id()
