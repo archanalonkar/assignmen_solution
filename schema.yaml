@@ -1,0 +1,15 @@
+COLUMNS:
+ employee_id: int64  
+ age: float64
+ gender: int32  
+ marital_status: int32  
+ salary: float64
+ employment_type: int32  
+ region: int32  
+ has_dependents: int32  
+ tenure_years: float64
+
+
+TARGET_COLUMN:
+
+ enrolled: int64 

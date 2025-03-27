@@ -1,0 +1,8 @@
+[2025-03-27 09:24:28,428: ERROR: 3005520168: Error in processing: [Errno 2] No such file or directory: 'config\\config.yaml']
+[2025-03-27 09:27:04,451: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-03-27 09:27:04,495: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-03-27 09:27:04,513: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-03-27 09:27:04,513: INFO: common: created directory at: artifacts]
+[2025-03-27 09:27:04,513: INFO: common: created directory at: artifacts/data_validation]
+[2025-03-27 09:27:04,564: INFO: 1313075877: Categorical columns encoded successfully.]
+[2025-03-27 09:27:04,585: INFO: 1313075877: Features ['age', 'salary', 'tenure_years'] scaled successfully.]
