@@ -33,7 +33,6 @@ The model is evaluated using:
 - **Recall**
 - **F1-score**
 
-Results and insights are documented in `report.md` or `report.pdf`.
 
 ## 5. Future Improvements
 
